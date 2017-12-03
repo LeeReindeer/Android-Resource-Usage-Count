@@ -12,6 +12,7 @@ import com.intellij.psi.xml.XmlTag;
 import com.intellij.usages.Usage;
 import com.intellij.usages.UsageSearcher;
 import com.intellij.util.Processor;
+import com.intellij.xml.util.ColorIconCache;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import utils.FindUsageUtils;
@@ -30,11 +31,14 @@ public class UsageCountLineProvider implements LineMarkerProvider {
         if (!ResourceUsageCountUtils.isTargetTagToCount(psiElement)) {
             return null;
         }
+        //System.out.println("Start draw icon...");
         int count = findTagUsage((XmlTag) psiElement);
+        Color color = count <= 0 ? PropertiesUtils.getZeroColor() : count == 1 ? PropertiesUtils.getOneColor() : PropertiesUtils.getOtherColor();
         if (PropertiesUtils.isOnlyShowZeroCount()) {
-            return count == 0 ? new MyLineMarkerInfo(psiElement, count) : new MyLineMarkerInfo(psiElement, -1);
+            //System.out.println("Only one ");
+            return count == 0 ? new MyLineMarkerInfo(psiElement, count, color) : new MyLineMarkerInfo(psiElement, -1, color);
         }
-        return new MyLineMarkerInfo(psiElement, count);
+        return new MyLineMarkerInfo(psiElement, count, color);
     }
 
     @Override
@@ -44,46 +48,11 @@ public class UsageCountLineProvider implements LineMarkerProvider {
 
     private class MyLineMarkerInfo extends LineMarkerInfo<PsiElement> {
 
-        public MyLineMarkerInfo(PsiElement element, int count) {
-            super(element, element.getTextRange(), new MyIcon(count), Pass.UPDATE_ALL, null, null, GutterIconRenderer.Alignment.RIGHT);
+        public MyLineMarkerInfo(PsiElement element, int count, Color color) {
+            //super(element, element.getTextRange(), new TextIcon(String.valueOf(count), null, color, 10), Pass.UPDATE_ALL, null, null, GutterIconRenderer.Alignment.LEFT);
+            super(element, element.getTextRange(), new ColorIconCache.ColorIcon(8, color), Pass.UPDATE_ALL, null, null, GutterIconRenderer.Alignment.LEFT);
+            //System.out.println("Draw finish..." + count + color);
             separatorPlacement = SeparatorPlacement.BOTTOM;
-        }
-
-    }
-
-    private class MyIcon extends com.intellij.util.ui.EmptyIcon {
-
-        private int count;
-        private int length;
-
-        MyIcon(int count) {
-            super(8, 8);
-            this.count = count;
-            int temp = count;
-            length ++;
-            while (temp / 10 != 0) {
-                length ++;
-                temp /= 10;
-            }
-        }
-
-        @Override
-        public void paintIcon(Component c, Graphics g, int i, int j) {
-            if (count == -1) {
-                return;
-            }
-            g.setColor(count <= 0 ? PropertiesUtils.getZeroColor() : count == 1 ? PropertiesUtils.getOneColor() : PropertiesUtils.getOtherColor());
-            g.drawString(String.valueOf(count), i, (int)(j + getIconHeight() + 1.5));
-        }
-
-        @Override
-        public int getIconWidth() {
-            return length * 5;
-        }
-
-        @Override
-        public int getIconHeight() {
-            return 8;
         }
     }
 
@@ -109,6 +78,8 @@ public class UsageCountLineProvider implements LineMarkerProvider {
                     return true;
                 }
             });
+            //System.out.println(usageSearcher.toString());
+            //System.out.println("count: " + mCount.get());
             return mCount.get();
         }
         return 0;

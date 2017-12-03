@@ -18,6 +18,7 @@ class ResourceUsageCountUtils {
             return false;
         }
         String name = ((XmlTag)tag).getName();
+        //System.out.println("Open File name: " + name);
         return name.equals("array")
                 || name.equals("attr")
                 || name.equals("bool")
