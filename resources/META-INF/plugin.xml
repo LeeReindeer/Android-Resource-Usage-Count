@@ -1,8 +1,8 @@
 <idea-plugin>
   <id>com.niorgai</id>
-  <name>Android Resource Usage Count</name>
+  <name>Android Resource Usage Count(Color)</name>
   <version>2.1</version>
-  <vendor email="jianqiu.sysu@gmail.com" url="https://github.com/niorgai/Android-Resource-Usage-Count">Github</vendor>
+  <vendor email="reindeerlee.work@gmail.com" url="https://github.com/LeeReindeer/Android-Resource-Usage-Count.git" >Github</vendor>
 
   <description><![CDATA[
     Count for android resource usage and show in each line. <br> <br>
