@@ -1,17 +1,21 @@
-# Android-Resource-Usage-Count
+# Android-Resource-Usage-Count-Color
 Android Resource Usage Count Plugin 
 
-[中文版](http://niorgai.github.io/2017/08/01/Android-Resource-Usage-Count/)
+Fork of [Android-Resource-Usage-Count](https://github.com/niorgai/Android-Resource-Usage-Count)
 
 Auto count resource usage and show it in the left of each line.
+
+Result Color
+---
+* 0 - grey color
+* 1 - green color
+* other - red color
+
+![](http://ojvnx00zs.bkt.clouddn.com/resource-color.png)
 
 Use in Android Studio and IntelliJ IDEA.
 
 If count not show, please edit/reopen it.
-
-[Jetbrains Plugin Page](https://plugins.jetbrains.com/plugin/9885-android-resource-usage-count)
-
-![](http://7sbqys.com1.z0.glb.clouddn.com/resouce_count_plugin_example.jpeg)
 
 Tag to count
 ---
@@ -32,12 +36,6 @@ Tag to count
 * `string`
 * `string-array`
 * `style`
-
-Result Color
----
-* 0 - grey color
-* 1 - blue color
-* other - red color
 
 Custom color in `Preferences` - `Other Settings` - `Android Resource Usage Count`
 
