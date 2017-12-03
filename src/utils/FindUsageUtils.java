@@ -30,6 +30,7 @@ import java.util.Iterator;
 
 /**
  * Utils for findUsage
+ *
  * Copy from FinsUsageAction & findUsageManager & SearchForUsagesRunnable
  */
 public class FindUsageUtils {

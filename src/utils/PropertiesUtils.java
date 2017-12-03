@@ -7,6 +7,7 @@ import java.awt.*;
 
 /**
  * save the color
+ *
  * Created by qiu on 8/16/17.
  */
 public class PropertiesUtils {
