@@ -1,15 +1,18 @@
 # Android-Resource-Usage-Count-Color
-Android Resource Usage Count Plugin 
 
-Fork of [Android-Resource-Usage-Count](https://github.com/niorgai/Android-Resource-Usage-Count)
+Fork from [Android-Resource-Usage-Count](https://github.com/niorgai/Android-Resource-Usage-Count)
+
+> 试图修复这个[issue](https://github.com/niorgai/Android-Resource-Usage-Count/issues/27)失败后的妥协品，将显示数字改为显示颜色来表示计数。
 
 Auto count resource usage and show it in the left of each line.
 
 Result Color
 ---
-* 0 - grey color
-* 1 - green color
-* other - red color
+* 0 -> grey color
+* 1 -> green color
+* other -> red color
+
+You configure colors in setting.
 
 ![](http://ojvnx00zs.bkt.clouddn.com/resource-color.png)
 
